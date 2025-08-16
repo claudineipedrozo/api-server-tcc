@@ -1,0 +1,22 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL") // adicione no .env
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id       String @id @default(uuid())
+  name     String
+  password String
+}
+
+model Coleta {
+  id     String   @id @default(uuid())
+  numero String
+  local  String
+  status String   @default("pendente")
+  data   DateTime @default(now())
+}
